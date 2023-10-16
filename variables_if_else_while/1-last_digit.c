@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <time.h>
-#include <stdlib.h>
+#include <stdio.h>
 
 /**
  * main - 1-last_digit
@@ -28,7 +28,8 @@ int main(void)
 	}
 	else
 	{
-		printf(" and is less than 6 and not 0\n")
+		printf(" and is less than 6 and not 0\n");
+	}
 
 	return (0);
 }
