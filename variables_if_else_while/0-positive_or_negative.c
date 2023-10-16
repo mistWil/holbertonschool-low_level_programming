@@ -1,14 +1,21 @@
 #include <stdlib.h> 
 #include <time.h> 
-/* more headers goes there */  
-/* betty style doc for function main goes there */ 
+/**
+ *  Task 0: Positive or negative
+ *  Edit by : Wil L.
+ *
+ */  
+ 
 int main(void) 
-{  int n;   
+{  
+	/*Variable*/
+	int n;   
 	
+	/*Aleatoire*/
 	srand(time(0));
       	n = rand() - RAND_MAX / 2;
 
-      	/* your code goes there */
+      	/* Conditions*/
 
 	if (n < 0)
 	{
@@ -18,7 +25,7 @@ int main(void)
 		printf("is zero\n");
 	} else 
 	{
-		printf("is negative\n");
+		printf("is negative\in");
 	}	
 
 	return (0); 
