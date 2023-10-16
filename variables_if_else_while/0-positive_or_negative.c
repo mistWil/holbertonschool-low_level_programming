@@ -1,5 +1,7 @@
 #include <stdlib.h> 
 #include <time.h> 
+#include <stdio.h>
+#include <math.h>
 /**
  *  Task 0: Positive or negative
  *  Edit by : Wil L.
