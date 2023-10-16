@@ -1,23 +1,21 @@
-#include <stdlib.h> 
-#include <time.h> 
+#include <stdlib.h>
+#include <time.h>
 #include <stdio.h>
 #include <math.h>
 /**
  *  main: Positive or negative
- *  return 0 (for success)
  *
- */  
- 
-int main(void) 
-{  
-	/*Variable*/
-	int n;   
-	
-	/*Aleatoire*/
-	srand(time(0));
-      	n = rand() - RAND_MAX / 2;
+ *  Return: 0 (for success)
+ */
 
-      	/* Conditions*/
+int main(void)
+{
+	/*Variable*/
+	int n;
+
+	srand(time(0));
+	n = rand() - RAND_MAX / 2;
+
 	if (n < 0)
 	{
 		printf("%d is negative\n", n);
