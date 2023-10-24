@@ -17,19 +17,9 @@ void puts_half(char *str)
 		len++;
 	}
 
-	if (len % 2 == 0)
+	for (moitie = (len + 1) / 2; str[moitie] != '\0' ; moitie++)
 	{
-		for (moitie = len / 2; moitie <= len - 1 ; moitie++)
-		{
-			_putchar(str[moitie]);
-		}
-	}
-	else
-	{
-		for (moitie = (len - 1) / 2; moitie <= len - 1 ; moitie++)
-		{
-			_putchar(str[moitie]);
-		}
+		_putchar(str[moitie]);
 	}
 	_putchar('\n');
 }
