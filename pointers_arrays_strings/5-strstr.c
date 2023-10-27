@@ -17,15 +17,15 @@ char *_strstr(char *haystack, char *needle)
 
 		while (*c != '\0' && *start == *c)
 		{
-			*c = *start;
 			c++;
 			start++;
 		}
 		if (*c == '\0')
 		{
-			break;
+			return (haystack);
 		}
-		return (c);
+
+		haystack++;
 	}
 
 	return ('\0');
