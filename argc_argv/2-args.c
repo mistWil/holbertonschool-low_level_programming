@@ -5,7 +5,7 @@
 /**
  * main - int
  * @argc: int
- * argv: *char
+ * @argv: *char
  *
  * Return: o if success
  */
