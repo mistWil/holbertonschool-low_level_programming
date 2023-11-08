@@ -12,7 +12,7 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 {
 	unsigned int i = 0;
 	void *array = NULL;
-	void *ptr;
+	unsigned int *ptr;
 
 	if (nmemb == 0)
 		return (NULL);
