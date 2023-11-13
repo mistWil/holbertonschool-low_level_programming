@@ -2,15 +2,15 @@
 #include "dog.h"
 #include <stdio.h>
 
-char *_strdup(char *str);
-
 /**
- * strdup - returns a pointer to a newly
+ * _strdup - returns a pointer to a newly
  * allocated space in memory
  * @str: char*
  *
  * Return: char*
  */
+
+char *_strdup(char *str);
 
 char *_strdup(char *str)
 {
