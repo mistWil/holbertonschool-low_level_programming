@@ -1,79 +1,65 @@
-#include <stdlib.h>
 #include "dog.h"
+#include <stdlib.h>
 #include <stdio.h>
 
+char *_memcpy(char *dest, char *src, unsigned int n);
+
 /**
- * _strdup - returns a pointer to a newly
- * allocated space in memory
- * @str: char*
+ * _memcpy - function that copies memory area
+ * @dest: destination char string
+ * @src: source char string
+ * @n: unsigned integer
  *
- * Return: char*
+ * Return: dest
  */
 
-char *_strdup(char *str);
-
-char *_strdup(char *str)
+char *_memcpy(char *dest, char *src, unsigned int n)
 {
-	int len = 0;
-	int i = 0;
-	char *new_str;
+	unsigned int i;
 
-	if (str == NULL)
+	for (i = 0; i < n; i++)
 	{
-		return (NULL);
+		dest[i] = src[i];
 	}
-
-	while (str[len] != '\0')
-	{
-		len++;
-	}
-
-	new_str = malloc(len * sizeof(char) + sizeof(char));
-
-	if (new_str == NULL)
-	{
-		return (NULL);
-	}
-
-	for (i = 0; i < len; i++)
-	{
-		new_str[i] = str[i];
-	}
-
-	return (new_str);
-	free(new_str);
+	return (dest);
 }
 
 /**
- * new_dog - creates new dog
- * @name: char*
- * @age: float
- * @owner: char*
+ * new_dog - function that creates a new dog
+ * @name: first member
+ * @age: second member
+ * @owner: third member
  *
- * Return: new_dog
+ * Return: return null if the function fails
  */
 
 dog_t *new_dog(char *name, float age, char *owner)
 {
-	dog_t *new_dog = (dog_t *)malloc(sizeof(dog_t));
+	int len1 = 0, len2 = 0;
+	dog_t *new_dog = NULL;
+
+	while (name[len1] != '\0')
+		len1++;
+	while (owner[len2] != '\0')
+		len2++;
+
+	new_dog = malloc(sizeof(dog_t));
 
 	if (new_dog == NULL)
 		return (NULL);
 
-
-
-
-	new_dog->name = _strdup(name);
+	new_dog->name = malloc((len1 + 1) * sizeof(char));
 
 	if (new_dog->name == NULL)
 	{
 		free(new_dog);
 		return (NULL);
 	}
+	_memcpy(new_dog->name, name, len1);
+	new_dog->name[len1] = '\0';
 
 	new_dog->age = age;
-
-	new_dog->owner = _strdup(owner);
+	new_dog->owner = malloc((len2 + 1) * sizeof(char));
 
 	if (new_dog->owner == NULL)
 	{
@@ -81,6 +67,8 @@ dog_t *new_dog(char *name, float age, char *owner)
 		free(new_dog);
 		return (NULL);
 	}
+	_memcpy(new_dog->owner, owner, len2);
+	new_dog->owner[len2] = '\0';
 
 	return (new_dog);
 }
