@@ -12,12 +12,17 @@ void print_strings(const char *separator, const unsigned int n, ...);
 void print_all(const char * const format, ...);
 
 /*Structure*/
-typedef struct form
+/**
+ * struct funckey - a key for picking functions to use for printing
+ * in 3-print_all.c
+ *
+ * @f: function to use for printing
+ * @spec: character specifier
+ */
+typedef struct funckey
 {
-	char c;
-	int i;
-	float f;
-	char *s;
-}format;
+	void (*f)(va_list);
+	char spec;
+} funckey;
 
 #endif
