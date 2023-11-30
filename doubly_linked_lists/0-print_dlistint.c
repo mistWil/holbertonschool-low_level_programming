@@ -12,6 +12,7 @@ size_t print_dlistint(const dlistint_t *h)
 {
 	unsigned int cpt = 0;
 	const dlistint_t *current;
+
 	current = h;
 
 	while (current)
@@ -20,5 +21,6 @@ size_t print_dlistint(const dlistint_t *h)
 		current = current->next;
 		cpt++;
 	}
+
 	return (cpt);
 }
