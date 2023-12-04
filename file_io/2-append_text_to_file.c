@@ -1,38 +1,39 @@
 #include "main.h"
 
 /**
- * append_text_to_file - Appends text to the end of a file.
- * @filename: Name of the file.
- * @text_content: NULL-terminated string to append.
+ * append_text_to_file - appends text to a file
+ * @filename: the name of the file to be created or appended to
+ * @text_content: the text to be written to the file
  *
- * Return: 1 on success, -1 on failure.
+ * Return: 1 on success, -1 on failure
  */
-
 int append_text_to_file(const char *filename, char *text_content)
 {
-	int fd = 0, bytes_written = 0;
+	int fd;
+	ssize_t text_size = 0;
+	ssize_t write_status;
 
-	/*Vérifier si le nom du fichier ou le contenu du texte est NULL*/
-	if (filename == NULL || text_content == NULL)
+	if (filename == NULL)
 		return (-1);
 
-	/**
-	 * Ouvrir le fichier en écriture, en ajoutant à
-	 * la fin (O_WRONLY | O_APPEND)
-	 * fd = open(filename, O_WRONLY | O_APPEND)
-	 */
-
+	fd = open(filename, O_CREAT | O_WRONLY | O_APPEND, 0600);
 	if (fd == -1)
-		return (-1); /*Échec de l'ouverture du fichier*/
+		return (-1);
 
-	/*Écrire le texte dans le fichier*/
-	bytes_written = write(fd, text_content, strlen(text_content));
+	if (text_content != NULL)
+	{
+		while (text_content[text_size] != '\0')
+			text_size++;
 
-	/*Fermer le fichier après écriture*/
+		write_status = write(fd, text_content, text_size);
+
+		if (write_status == -1 || write_status != text_size)
+		{
+			close(fd);
+			return (-1);
+		}
+	}
+
 	close(fd);
-
-	if (bytes_written == -1)
-		return (-1); /*Échec de l'écriture du texte dans le fichier*/
-
-	return (1); /*Succès*/
+	return (1);
 }
