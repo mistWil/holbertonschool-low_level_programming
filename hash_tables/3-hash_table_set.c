@@ -1,53 +1,47 @@
 #include "hash_tables.h"
 
 /**
- * hash_table_set - add element in hash table
- * @ht: pointer to hash_table_t
- * @key: pointer to the key (char)
- * @value: pointer to the value we need insert
+ * hash_table_set - function that adds an element
+ * @ht: hash table
+ * @key: key
+ * @value: value
  *
- * Return: int
+ * Return: 1 if success, 0 otherwise
  */
 
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
 	hash_node_t *newnode, *temp;
-	unsigned long int index = 0;
+	unsigned long int index;
+
+	if (ht == NULL || key == NULL || value == NULL)
+		return (0);
 
 	index = key_index((const unsigned char *)key, ht->size);
+	temp = ht->array[index];
 
-	if (ht->array[index] == NULL)
+	while (temp != NULL)
 	{
-		newnode = malloc(sizeof(hash_node_t));
-
-		if (newnode == NULL)
-			return (0);
-
-		newnode->key = strdup(key);
-		newnode->value = strdup(value);
-
-		if (newnode->value == NULL)
+		if (strcmp(temp->key, key) == 0)
 		{
-			free(newnode);
-			return (0);
+			free(temp->value);
+			temp->value = strdup(value);
+			return (1);
 		}
+		temp = temp->next;
+	}
+	/* dans le cas où la node existe pas */
+	newnode = malloc(sizeof(hash_node_t));
+	if (newnode == NULL)
+		return (0);
+	newnode->key = strdup(key);
+	newnode->value = strdup(value);
+	newnode->next = NULL;
 
+	if (ht->array[index] != NULL)
 		newnode->next = ht->array[index];
-		ht->array[index] = newnode;
-	}
-	else
-	{
-		temp = ht->array[index];
-		while (temp)
-		{
-			if (strcmp(temp->key, key) == 0)
-			{
-				temp->value = strdup(value);
-				free(temp);
-				return (1);
-			}
-			temp = temp->next;
-		}
-	}
+
+	ht->array[index] = newnode;
+
 	return (1);
 }
