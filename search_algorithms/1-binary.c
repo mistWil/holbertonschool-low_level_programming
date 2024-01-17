@@ -13,7 +13,7 @@
  */
 int binary_search(int *array, size_t size, int value)
 {
-	size_t left;
+	size_t left = 0;
 	size_t right;
 	size_t i = 0;
 	size_t mid = 0;
